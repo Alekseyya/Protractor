@@ -1,6 +1,6 @@
 describe("Tests several browsers", function () {
-    it("Test firefox", function(){
-        browser.ignoreSynchronization = true;
+    browser.ignoreSynchronization = true;
+    it("Test firefox", function(){        
         browser.get("http://www.bbc.com/");        
         element(by.css('#orb-search-q')).sendKeys("Hello");
         browser.sleep(5000);
@@ -10,7 +10,7 @@ describe("Tests several browsers", function () {
         //element(by.css('#orb-search-q')).sendKeys('Julie');
     });
     it("Test firefox", function(){
-        browser.ignoreSynchronization = true;
+        //browser.ignoreSynchronization = true;
         browser.get("https://www.yandex.ru/");        
         // element(by.css('#orb-search-q')).sendKeys("Hello");
         // browser.sleep(5000);

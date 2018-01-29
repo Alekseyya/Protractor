@@ -1,23 +1,16 @@
 // An example configuration file.
 exports.config = {
-    //directConnect: true,
-    //seleniumArgs: ['-Dwebdriver.ie.driver=<path to IEDriverServer.exe>']
-    // Capabilities to be passed to the webdriver instance.
+    directConnect: false,    
     capabilities: {
-        'browserName': 'internet explorer',
-        'platform': 'ANY',
-        'version': '11',
-        'ignoreProtectedModeSettings': true
+      'browserName': 'internet explorer'      
     },
- 
-    // multiCapabilities: [
-    //     {
-    //         shardTestFiles: true,
-    //         maxInstances: 2,
-    //         'browserName': 'chrome',
-    //         specs: ['m1-spec.js', 'm2-spec.js']
-    //     }         
-    // ],
+    
+    localSeleniumStandaloneOpts: {
+      jvmArgs: [
+        '-Dwebdriver.ie.driver=D:/TMP/IEDriverServer_x64_3.8.0/IEDriverServer.exe'
+      ]
+    },
+    
     // Framework to use. Jasmine is recommended.
     framework: 'jasmine',
 

@@ -1,11 +1,10 @@
 // An example configuration file.
 exports.config = {
-    directConnect: true,
-  
+    directConnect: true,    
     // Capabilities to be passed to the webdriver instance.
     capabilities: {
       'browserName': 'firefox',
-      maxSession: 1
+      maxSession: 1      
     },
   
     // Framework to use. Jasmine is recommended.
