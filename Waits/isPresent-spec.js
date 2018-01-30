@@ -28,6 +28,7 @@ describe("Ispresent", function () {
             return element(by.css('#episode-0')).isPresent().then(function(isPresent) {
               return !isPresent;
             });
+            
           }, 1000);
     });
 
