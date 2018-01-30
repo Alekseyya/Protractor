@@ -4,25 +4,20 @@ describe("Ispresent", function () {
 
     it("Test", function () {
         browser.get("http://www.bbc.com/");
-
-
-
-
         delay(20);
-        var flag = false;
+        var isPresent = false;
 
         function delay(end) {
-           
-                browser.driver.findElement(By.id("11bbccom_interstitial_ad")).then(null, function (err) {
-                    if (err.name === "NoSuchElementError") {
-                        flag = true;
-                        console.log("Element was missing!");
-                    }
-                });
-           
-            
 
-            if (end == 1 || !flag) {
+            browser.driver.findElement(By.id("11bbccom_interstitial_ad")).then(null, function (err) {
+                if (err.name === "NoSuchElementError") {
+                    isPresent = true;
+                    console.log("Element was missing!");
+                }
+            });
+
+            if (end == 1 || !isPresent) {
+                isPresent = false;
                 console.log("end")
                 return 0;
             } else {
