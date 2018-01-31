@@ -27,7 +27,10 @@ describe("IsDisplayed", function () {
                             }else{
                                 onHidden(); 
                             }
-                        });
+                        }).catch(
+                            function (NoSuchElementError) {
+                                throw new Error("SuchElementError");                        
+                            });
                 }else if(findElement == true && start < end){
                     setTimeout(function () { }, 1000);
                     delay(start + 1 ,end, locator);
@@ -38,13 +41,7 @@ describe("IsDisplayed", function () {
                         throw new Error("No Such Element Error and Time is over!");                        
                     });
                                       
-                }else if(findElement == true && start >= end){
-                    // element(by.id(locator)).isDisplayed().then()
-                    // .catch(
-                    // function (NoSuchElementError) {
-                    //     throw new Error("No Such Element Error");
-                        
-                    // }); 
+                }else if(findElement == true && start >= end){                    
                     throw new Error("Time is over if element is present");                                       
                 }
                 //if element not exist
