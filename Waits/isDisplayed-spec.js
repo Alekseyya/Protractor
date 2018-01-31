@@ -1,56 +1,66 @@
+
 describe("IsDisplayed", function () {
-    browser.ignoreSynchronization = true;
-    it("Test", function () {
-        browser.get("http://www.bbc.com/");
-
-        var startTime = 0;
-        var endTime = 20;
+    browser.ignoreSynchronization = true;    
+    it("Test isDisplayed", function(){
+        browser.get("http://www.bbc.com/");       
+        var timeLimit = 30;
+        
         var locator = "111bbccom_interstitial_ad";
-        delay(startTime, endTime, locator);         
+
+        var isVisibleflag = false;        
+        var endTimeout = false;
+        var startTime = 0;
         
-        function onDisplayed(){
-            console.log("onDiplayed");
+        Displayed(locator);
+        Timer(); 
+
+        function Displayed(locator){
+            element(by.id(locator)).isDisplayed().then(function(elem){
+                if(elem == true && startTime < timeLimit){
+                    isVisibleflag = true;
+                    console.log("Element isVisible");
+                }else if(elem == false && !endTimeout){
+                    Displayed(locator);                                   
+                    console.log("IsHidden flag true");
+                }else if(elem == false && !endTimeout){                    
+                    console.log("End timeout");
+                }
+            }).catch(function(){
+                if(!endTimeout){
+                    Displayed(locator);
+                }else{
+                    console.log("Catch exception");
+                }               
+                
+            });
+            
+            // await function () {
+            //     if (IsHiddenflag && !endTimeout) {
+            //         Displayed(locator);
+            //     }
+            // } 
+            
         }
 
-        function onHidden(){
-            console.log("onHidden");
-        }
+        function Timer() {
+            let tick = setInterval(function(){
+                if(isVisibleflag){
+                    clearInterval(tick);
+                }
+                startTime++;
+            }, 1000);
+            if(!isVisibleflag){
+                setTimeout(function(){ 
+                    clearInterval(tick);
+                    endTimeout = true;
+                    console.log(startTime);
+                    console.log("!!!!!!!!!!!!!");
+                    //browser.sleep(100);
+                }, 30000);
+            }
+            
+        }    
         
+    });
 
-        function delay(start, end, locator) {            
-           element(by.id(locator)).isPresent().then(function(findElement){
-                if(findElement == true && start < end){
-                    console.log("Present is ...")                    
-                    element(by.id(locator)).isDisplayed().then(function(isVisible){
-                            if(isVisible){
-                                onDisplayed();
-                            }else{
-                                onHidden(); 
-                            }
-                        }).catch(
-                            function (NoSuchElementError) {
-                                throw new Error("SuchElementError");                        
-                            });
-                }else if(findElement == true && start < end){
-                    setTimeout(function () { }, 1000);
-                    delay(start + 1 ,end, locator);
-                }else if(findElement!= true && start >= end){
-                    element(by.id(locator)).isDisplayed().then()
-                    .catch(
-                    function (NoSuchElementError) {
-                        throw new Error("No Such Element Error and Time is over!");                        
-                    });
-                                      
-                }else if(findElement == true && start >= end){                    
-                    throw new Error("Time is over if element is present");                                       
-                }
-                //if element not exist
-                else if (findElement != true && start < end) {
-                    setTimeout(function(){}, 1000);
-                    delay(start + 1, end, locator);
-                }
-            })                  
-        }
-
-    }); 
 });
