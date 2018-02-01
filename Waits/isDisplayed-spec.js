@@ -2,10 +2,10 @@
 describe("IsDisplayed", function () {
     browser.ignoreSynchronization = true;    
     it("Test isDisplayed", function(){
-        browser.get("http://www.bbc.com/");       
-        var timeLimit = 30;
-        
-        var locator = "111bbccom_interstitial_ad";
+        browser.get("http://www.bbc.com/"); 
+
+        var timeLimit = 30;        
+        var locator = "11orb-search-form";
 
         var isVisibleflag = false;        
         var endTimeout = false;
@@ -16,30 +16,22 @@ describe("IsDisplayed", function () {
 
         function Displayed(locator){
             element(by.id(locator)).isDisplayed().then(function(elem){
-                if(elem == true && startTime < timeLimit){
-                    isVisibleflag = true;
-                    console.log("Element isVisible");
+                if(elem == true && !endTimeout){
+                    isVisibleflag = true;                    
                 }else if(elem == false && !endTimeout){
-                    Displayed(locator);                                   
-                    console.log("IsHidden flag true");
+                    setTimeout(()=>{}, 800);
+                    Displayed(locator);
                 }else if(elem == false && !endTimeout){                    
                     console.log("End timeout");
                 }
             }).catch(function(){
                 if(!endTimeout){
+                    setTimeout(()=>{},1000);
                     Displayed(locator);
                 }else{
-                    console.log("Catch exception");
-                }               
-                
+                    throw new Error("EndTimer is true");
+                }
             });
-            
-            // await function () {
-            //     if (IsHiddenflag && !endTimeout) {
-            //         Displayed(locator);
-            //     }
-            // } 
-            
         }
 
         function Timer() {
@@ -52,13 +44,11 @@ describe("IsDisplayed", function () {
             if(!isVisibleflag){
                 setTimeout(function(){ 
                     clearInterval(tick);
-                    endTimeout = true;
-                    console.log(startTime);
-                    console.log("!!!!!!!!!!!!!");
+                    endTimeout = true;                    
+                    throw new Error("Time is over");
                     //browser.sleep(100);
                 }, 30000);
-            }
-            
+            }            
         }    
         
     });
