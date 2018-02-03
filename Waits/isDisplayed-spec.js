@@ -1,56 +1,41 @@
 
 describe("IsDisplayed", function () {
-    browser.ignoreSynchronization = true;    
-    it("Test isDisplayed", function(){
-        browser.get("http://www.bbc.com/"); 
+    browser.ignoreSynchronization = true;
+    it("Test isDisplayed", function () {
+        browser.get("http://www.bbc.com/");
 
-        var timeLimit = 30;        
-        var locator = "11orb-search-form";
+        var timeLimit = 30000;
+        var checkPeriod = 1000;
+        var locator = "#bbccosdfm_interstitial_ad";
+    
+        let beginTime = new Date().getTime();
+        let checker = () => {
+            var duration = new Date().getTime() - beginTime; 
+            if (duration > timeLimit) {
+                console.log("Exit from check cycle");
+                clearInterval(timer);            
+            }
 
-        var isVisibleflag = false;        
-        var endTimeout = false;
-        var startTime = 0;
-        
-        Displayed(locator);
-        Timer(); 
+            checkDisplayed(locator);
+        };
 
-        function Displayed(locator){
-            element(by.id(locator)).isDisplayed().then(function(elem){
-                if(elem == true && !endTimeout){
-                    isVisibleflag = true;                    
-                }else if(elem == false && !endTimeout){
-                    setTimeout(()=>{}, 800);
-                    Displayed(locator);
-                }else if(elem == false && !endTimeout){                    
-                    console.log("End timeout");
-                }
-            }).catch(function(){
-                if(!endTimeout){
-                    setTimeout(()=>{},1000);
-                    Displayed(locator);
-                }else{
-                    throw new Error("EndTimer is true");
-                }
+        setTimeout(checker, checkPeriod);
+
+        function checkDisplayed(locator) {
+            element(by.css(locator)).isDisplayed().then(function (isVisible) {
+                console.log("Check by timer ...");
+                if (isVisible == true) {
+                    // clearInterval(timer);
+                    console.log("Element is found");
+                } else {
+                    setTimeout(checker, checkPeriod);
+                }                
+            }).catch(function (err) {
+                setTimeout(checker, checkPeriod);
+                console.log("Error in timer ...");
             });
         }
 
-        function Timer() {
-            let tick = setInterval(function(){
-                if(isVisibleflag){
-                    clearInterval(tick);
-                }
-                startTime++;
-            }, 1000);
-            if(!isVisibleflag){
-                setTimeout(function(){ 
-                    clearInterval(tick);
-                    endTimeout = true;                    
-                    throw new Error("Time is over");
-                    //browser.sleep(100);
-                }, 30000);
-            }            
-        }    
-        
     });
 
 });

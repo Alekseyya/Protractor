@@ -1,4 +1,3 @@
-
 describe("Ispresent", function () {
     
     browser.ignoreSynchronization = true;
