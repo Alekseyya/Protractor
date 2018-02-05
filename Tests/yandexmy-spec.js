@@ -52,13 +52,13 @@ describe("IsEnabled", function () {
             element(by.css("#city__front-input")).clear();
             element(by.css("#city__front-input")).sendKeys(city);            
             browser.sleep(1000);
-            TestElement("div.popup_visibility_visible", 15);
+            TestElement("div.popup_visibility_visible", 15000);
             element(by.css("ul.input__popup-items.popup__items > li:first-child")).click();
             browser.sleep(500); 
         }
 
         function GetListServices(city) {
-            TestElement("div.home-arrow__tabs > div:first-child > a:last-child", 15);
+            TestElement("div.home-arrow__tabs > div:first-child > a:last-child", 15000);
             element(by.css("div.home-arrow__tabs > div:first-child > a:last-child")).click();
             element.all(by.xpath("//div[@class ='home-tabs__more']/descendant::a"))
                 .map((tag) => {
