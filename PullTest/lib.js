@@ -1,26 +1,127 @@
-let xpathLoginLocator = "//div[@class='domik3__dropdown-row']/descendant::input)[1]";
-let xpathPasswordLocator = "//div[@class='domik3__dropdown-row']/descendant::input)[2]";
+let xpathLoginLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[1]";
+let xpathPasswordLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[2]";
 let correctLogin = "AutotestUser";
 let correctPassword = "AutotestUser123";
 
 let incorrectLogin = "NoAutotestUser";
 let incorrectPasword = "NoAutotestUser123";
 
-function SetLogin(login, xpathLocator){
-    let input = element(by.xpath(xpathLocator));
+
+function SetLogin(login){
+    TestElement(xpathLoginLocator, 10000);
+    let input = element(by.xpath(xpathLoginLocator));
     input.sendKeys(login);
 }
 
-function SetPassword(pass, xpathLocator){
-    let input = element(by.xpath(xpathLocator));
+function SetPassword(pass){
+    TestElement(xpathPasswordLocator, 10000);
+    let input = element(by.xpath(xpathPasswordLocator));
     input.sendKeys(pass);
 }
 
 function SingUp(){
+    let buttonLocator = "//button[contains(@class, 'auth__button')]";    
+    TestElement(buttonLocator, 10000);
+    element(by.xpath(buttonLocator)).click();    
+}
+
+async function GetMesageValidPassword(){
+    let validateMessage = "//div[contains(@class,'passport-Domik-Form-Error')]";
+    TestElement(validateMessage, 10000);
+    let message = await element(by.xpath(validateMessage)).getText();
+    if(message === "Неверный пароль"){
+        return true;
+    }
+    return false;
+}
+
+async function GetMessageValidLogin(){
+    let validateMessage = "//div[contains(@class,'passport-Domik-Form-Error')]";
+    TestElement(validateMessage, 10000);
+    let message = await element(by.xpath(validateMessage)).getText();
+    if(message === "Такого аккаунта нет"){
+        return true;
+    }
+    return false;
+}
+
+async function ReturnUserName(){
+    let userNameLocator = "//div[@class ='mail-User-Name']";
+    TestElement(userNameLocator, 15000);
+    let userName = await element(by.xpath(userNameLocator)).getText();
+    return userName;
+}
+
+function Logout(){
+    let userButtonLocator = "//div[@class ='mail-User-Name']";
+    let popupLocator = "//div[contains(@class,'b-user-dropdown-content')]";
+    let exitLocator = "//div[@class='b-mail-dropdown__item'][last()]/a";
+    let userLogined = "//span[@class='username__first-letter']";
+
+    browser.sleep(1000);
+    TestElement(userButtonLocator, 10000);
+    element(by.xpath(userButtonLocator)).click();
     
+    TestElement(popupLocator, 10000);
+    element(by.xpath(exitLocator)).click();
+}
+
+async function isExitUser(){
+    TestElement(userLogined, 10000);
+    try {
+       await element(by.xpath(userLogined)).isDisplayed();
+    } catch (error) {
+        return true;
+    }
+    return false;  
+}
+
+function TestElement(xLocator, tLimit){
+    timeLimit = tLimit;
+    xpathLocator = xLocator;
+    setTimeout(checker, checkPeriod);
+}
+
+var timeLimit = 30000;
+var checkPeriod = 100;
+var xpathLocator = "#bbccosdfm_interstitial_ad";
+
+let beginTime = new Date().getTime();
+let checker = () => {
+    var duration = new Date().getTime() - beginTime; 
+    if (duration > timeLimit) {
+        throw new Error("Exit from check cycle");
+        //console.log("Exit from check cycle");
+        clearInterval(timer);            
+    }
+
+    checkDisplayed(xpathLocator);
+};
+
+
+
+function checkDisplayed(xpathLocator) {
+    element(by.xpath(xpathLocator)).isDisplayed().then(function (isVisible) {
+        console.log("Check by timer ...");
+        if (isVisible == true) {
+            // clearInterval(timer);
+            console.log("Element is found");
+        } else {
+            setTimeout(checker, checkPeriod);
+        }                
+    }).catch(function (err) {
+        setTimeout(checker, checkPeriod);
+        //console.log("Error in timer ...");
+    });
 }
 
 module.exports = {
     SetLogin : SetLogin,
-    SetPassword : SetPassword
+    SetPassword : SetPassword,
+    SingUp : SingUp,
+    ReturnUserName : ReturnUserName,
+    Logout : Logout,
+    isExitUser : isExitUser,
+    GetMesageValidPassword :GetMesageValidPassword,
+    GetMessageValidLogin : GetMessageValidLogin
 }

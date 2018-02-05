@@ -11,7 +11,7 @@
             "stopOnEntry": false,
             "program": "${workspaceRoot}/node_modules/protractor/bin/protractor",
             "args": [
-                "${workspaceRoot}/Tests/yandex_conf.js"
+                "${workspaceRoot}/PullTest/pull_conf.js"
             ]            
         }
     ]
