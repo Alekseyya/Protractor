@@ -74,7 +74,7 @@ describe("IsEnabled", function () {
         }
 
         function TestElement(cssLocator, timeLimitMilisecond){
-            ResetFlags(10000);
+            ResetFlags(timeLimitMilisecond);
             Timer();            
             Displayed(cssLocator);
             
