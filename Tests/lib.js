@@ -11,6 +11,11 @@ function GoToYandex(){
     browser.get("https://www.yandex.ru/");
 }
 
+function ChangeLocationAndGetInfo(){
+    GetDataOfCity("London");
+    GetDataOfCity("Paris");
+}
+
 function GetDataOfCity(city){           
     ClickOnLinkCurrentCity();
     SelectCityInList(city);
@@ -123,5 +128,6 @@ function Timer() {
 module.exports = {
     GoToYandex : GoToYandex,
     GetDataOfCity : GetDataOfCity,
-    CompareServices : CompareServices
+    GetInfo : CompareServices,
+    ChangeLocation : ChangeLocationAndGetInfo
 }
