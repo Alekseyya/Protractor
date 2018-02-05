@@ -7,56 +7,54 @@ let listServicesOfLondon = [];
 let listServiceOfParis = [];
 
 
-function GoToYandex(){
-    browser.get("https://www.yandex.ru/");
+function GoToPage(page){
+    browser.get(page);
 }
 
-function ChangeLocationAndGetInfo(){
-    GetDataOfCity("London");
-    GetDataOfCity("Paris");
-}
-
-function GetDataOfCity(city){           
-    ClickOnLinkCurrentCity();
+function SetCity(city){
+    element(by.css(".geolink__reg")).click();
     SelectCityInList(city);
-    GetListServices(city);            
 }
 
-function ClickOnLinkCurrentCity(){
-    element(by.css(".geolink__reg")).click();            
+async function GetInfoForLondon(){
+    let listServices = GetListServices("London");
+    return listServices;
 }
 
-function CompareServices(){
-    if(listServicesOfLondon.length == listServiceOfParis.length){
-        Array.prototype.diff = function(a) {
-            return this.filter(function(i) {return a.indexOf(i) < 0;});
-        };
-        let differenceResult = listServicesOfLondon.diff(listServicesOfLondon);
-        if(differenceResult.length == 0){
-            console.log("List services of london equal list services of paris");
-        }else{
-            console.log("Not equals, difference elements:" + differenceResult);
-        }
+async function GetInfoForParis(){
+    let listServices = await GetListServices("Paris");
+    listServices.push("1111111111");    
+    return listServices;
+}
+
+
+// function CompareServices(){
+//     if(listServicesOfLondon.length == listServiceOfParis.length){
+//         Array.prototype.diff = function(a) {
+//             return this.filter(function(i) {return a.indexOf(i) < 0;});
+//         };
+//         let differenceResult = listServicesOfLondon.diff(listServicesOfLondon);
+//         if(differenceResult.length == 0){
+//             console.log("List services of london equal list services of paris");
+//         }else{
+//             console.log("Not equals, difference elements:" + differenceResult);
+//         }
            
-    }else{
-        console.log("Number of services not match");
-    }            
-}
+//     }else{
+//         console.log("Number of services not match");
+//     }            
+// }
 
-function GetListServices(city) {
+
+async function GetListServices(city) {
     TestElement("div.home-arrow__tabs > div:first-child > a:last-child", 15000);
     element(by.css("div.home-arrow__tabs > div:first-child > a:last-child")).click();
-    element.all(by.xpath("//div[@class ='home-tabs__more']/descendant::a"))
+
+    let listServices = await element.all(by.xpath("//div[@class ='home-tabs__more']/descendant::a"))
         .map((tag) => {
             return tag.getText();
-        }).then((listServices) => {
-            if (city === "London") {
-                listServicesOfLondon = listServices;
-            } else if (city === "Paris") {
-                listServiceOfParis = listServices;
-                //CompareServices(); 
-            }
         });
+    return listServices;
 }
 
 function SelectCityInList(city) {
@@ -126,8 +124,9 @@ function Timer() {
 }
 
 module.exports = {
-    GoToYandex : GoToYandex,
-    GetDataOfCity : GetDataOfCity,
-    GetInfo : CompareServices,
-    ChangeLocation : ChangeLocationAndGetInfo
+    GoToPage : GoToPage,
+    SetCity : SetCity,
+    GetInfoForLondon : GetInfoForLondon,
+    GetInfoForParis : GetInfoForParis,    
+    GetListServices : GetListServices
 }
