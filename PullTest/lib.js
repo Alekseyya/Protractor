@@ -117,8 +117,24 @@ async function SelectLanguage(){
     TestElement(selectedEnglishLocator, 10000);
     element(by.xpath(selectedEnglishLocator)).click();
     browser.sleep(1000);
+}
+
+async function InEnglishPage(){
+    browser.sleep(1000);    
+    let yandexVideoLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[1]";
+    //TestElement(yandexVideoLocator, 15000);
+    let textVideo = await element(by.xpath(yandexVideoLocator)).getText();    
+    var regexEnglishWord = new RegExp("[a-zA-Z]{5}");
+    if(regexEnglishWord.test(textVideo)){
+        return true;
+    }
+    return false;
+}
+
+function SaveLanguageSettings(){
     let buttonSaveCurrentLanguage = "//button[contains(@class, 'form__save')]";
-    TestElement(selectedEnglishLocator, 2000);
+    TestElement(buttonSaveCurrentLanguage, 10000);
+    element(by.xpath(buttonSaveCurrentLanguage)).click();
 }
 
 function SingUp(){
@@ -234,5 +250,7 @@ module.exports = {
     VisitToYandexTranslate: VisitToYandexTranslate,
     VisitToYandexMusic: VisitToYandexMusic,
     ClickOnPopupLanguage : ClickOnPopupLanguage,
-    SelectLanguage : SelectLanguage
+    SelectLanguage : SelectLanguage,
+    SaveLanguageSettings : SaveLanguageSettings,
+    InEnglishPage : InEnglishPage
 }

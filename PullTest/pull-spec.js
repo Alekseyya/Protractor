@@ -4,7 +4,6 @@ describe("PullTest", function () {
     browser.ignoreSynchronization = true;
     // it("Validate user name", function () { 
     //     lib.GoToUrl("http://www.yandex.ru/");
-        
     //     lib.SetLogin("AutotestUser");
     //     lib.SetPassword("AutotestUser123");
     //     lib.SingUp();
@@ -55,10 +54,12 @@ describe("PullTest", function () {
     //         done.fail('some how the Url is incorrect');
     //     });
     // });
-    it("Test english version", function(){
-        lib.GoToUrl("http://www.yandex.ru/");
-        lib.ClickOnPopupLanguage();
-        lib.SelectLanguage();
-    });
+    // it("Test english version", function(){
+    //     lib.GoToUrl("http://www.yandex.ru/");
+    //     lib.ClickOnPopupLanguage();
+    //     lib.SelectLanguage();
+    //     lib.SaveLanguageSettings();
+    //     expect(lib.InEnglishPage()).toBe(true);
+    // });
 
 });
