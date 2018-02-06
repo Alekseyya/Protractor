@@ -1,25 +1,31 @@
-let xpathLoginLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[1]";
-let xpathPasswordLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[2]";
-let correctLogin = "AutotestUser";
-let correctPassword = "AutotestUser123";
-
-let incorrectLogin = "NoAutotestUser";
-let incorrectPasword = "NoAutotestUser123";
-
 function GoToUrl(url){
     browser.get(url);
 }
 
 function SetLogin(login){
-    TestElement(xpathLoginLocator, 10000);
+    browser.sleep(1000);
+    let xpathLoginLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[1]";
+    TestElement(xpathLoginLocator, 2000);       
     let input = element(by.xpath(xpathLoginLocator));
     input.sendKeys(login);
 }
 
 function SetPassword(pass){
-    TestElement(xpathPasswordLocator, 10000);
+    let xpathPasswordLocator = "(//div[@class='domik3__dropdown-row']/descendant::input)[2]";
+    TestElement(xpathPasswordLocator, 10000);      
     let input = element(by.xpath(xpathPasswordLocator));
     input.sendKeys(pass);
+}
+
+function DeleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
 }
 
 function VisitToYandexVideo(){    
@@ -140,13 +146,13 @@ function SaveLanguageSettings(){
 function SingUp(){
     let buttonLocator = "//button[contains(@class, 'auth__button')]";    
     TestElement(buttonLocator, 10000);
-    element(by.xpath(buttonLocator)).click();       
+    element(by.xpath(buttonLocator)).click();  
 }
 
 async function GetMesageValidPassword(){
     let validateMessage = "//div[contains(@class,'passport-Domik-Form-Error')]";
     TestElement(validateMessage, 10000);
-    let message = await element(by.xpath(validateMessage)).getText();
+    let message = await element(by.xpath(validateMessage)).getText();    
     if(message === "Неверный пароль"){
         return true;
     }
@@ -157,7 +163,8 @@ async function GetMessageValidLogin(){
     let validateMessage = "//div[contains(@class,'passport-Domik-Form-Error')]";
     TestElement(validateMessage, 10000);
     let message = await element(by.xpath(validateMessage)).getText();
-    if(message === "Такого аккаунта нет"){
+    console.log(message);
+    if(message === "Такого аккаунта нет" || message === "Введите символы с картинки"){
         return true;
     }
     return false;
@@ -167,6 +174,7 @@ async function ReturnUserName(){
     let userNameLocator = "//div[@class ='mail-User-Name']";
     TestElement(userNameLocator, 15000);
     let userName = await element(by.xpath(userNameLocator)).getText();
+    Logout();              
     return userName;
 }
 
@@ -175,13 +183,14 @@ function Logout(){
     let popupLocator = "//div[contains(@class,'b-user-dropdown-content')]";
     let exitLocator = "//div[@class='b-mail-dropdown__item'][last()]/a";
     let userLogined = "//span[@class='username__first-letter']";
-
-    browser.sleep(1000);
+    
     TestElement(userButtonLocator, 10000);
     element(by.xpath(userButtonLocator)).click();
     
-    TestElement(popupLocator, 10000);
+    TestElement(popupLocator, 15000);
+    browser.sleep(2000);
     element(by.xpath(exitLocator)).click();
+    //browser.sleep(5000);
 }
 
 async function isExitUser(){
@@ -201,16 +210,15 @@ function TestElement(xLocator, tLimit){
 }
 
 var timeLimit = 30000;
-var checkPeriod = 100;
+var checkPeriod = 500;
 var xpathLocator = "#bbccosdfm_interstitial_ad";
 
 let beginTime = new Date().getTime();
 let checker = () => {
     var duration = new Date().getTime() - beginTime; 
     if (duration > timeLimit) {
-        throw new Error("Exit from check cycle");
-        //console.log("Exit from check cycle");
-        clearInterval(timer);            
+        console.log("Exit from check cycle");        
+        //clearInterval(timer);            
     }
     checkDisplayed(xpathLocator);
 };
@@ -218,8 +226,7 @@ let checker = () => {
 
 
 function checkDisplayed(xpathLocator) {
-    element(by.xpath(xpathLocator)).isDisplayed().then(function (isVisible) {
-        console.log("Check by timer ...");
+    element(by.xpath(xpathLocator)).isDisplayed().then(function (isVisible) {        
         if (isVisible == true) {
             // clearInterval(timer);
             console.log("Element is found");
@@ -252,5 +259,6 @@ module.exports = {
     ClickOnPopupLanguage : ClickOnPopupLanguage,
     SelectLanguage : SelectLanguage,
     SaveLanguageSettings : SaveLanguageSettings,
-    InEnglishPage : InEnglishPage
+    InEnglishPage : InEnglishPage,
+    DeleteAllCookies : DeleteAllCookies
 }
