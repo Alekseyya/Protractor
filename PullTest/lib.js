@@ -6,6 +6,9 @@ let correctPassword = "AutotestUser123";
 let incorrectLogin = "NoAutotestUser";
 let incorrectPasword = "NoAutotestUser123";
 
+function GoToUrl(url){
+    browser.get(url);
+}
 
 function SetLogin(login){
     TestElement(xpathLoginLocator, 10000);
@@ -19,10 +22,109 @@ function SetPassword(pass){
     input.sendKeys(pass);
 }
 
+function VisitToYandexVideo(){    
+    let yandexVideoLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[1]"
+    TestElement(yandexVideoLocator, 10000);
+    element(by.xpath(yandexVideoLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function VisitToYandexImages(){
+    let yandexPictureLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[2]"
+    TestElement(yandexPictureLocator, 10000);
+    element(by.xpath(yandexPictureLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function VisitToYandexNews(){
+    let yandexNewsLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[3]"
+    TestElement(yandexNewsLocator, 10000);
+    element(by.xpath(yandexNewsLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+
+function VisitToYandexMaps(){
+    let yandexMapsLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[4]"
+    TestElement(yandexMapsLocator, 10000);
+    element(by.xpath(yandexMapsLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function VisitToYandexMarket(){
+    let yandexMarketLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[5]"
+    TestElement(yandexMarketLocator, 10000);
+    element(by.xpath(yandexMarketLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function VisitToYandexTranslate(){
+    let yandexTranslateLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[6]"
+    TestElement(yandexTranslateLocator, 10000);
+    element(by.xpath(yandexTranslateLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function VisitToYandexMusic(){
+    let yandexMusicLocator = "//div[@class = 'home-arrow__tabs']/descendant::a[7]"
+    TestElement(yandexMusicLocator, 10000);
+    element(by.xpath(yandexMusicLocator)).click();
+    let url =  browser.getCurrentUrl(); 
+    browser.get("http://www.yandex.ru/");  
+    return url;
+}
+
+function ClickOnPopupLanguage(){
+    let optionsLink = "//div[contains(@class, 'dropdown-menu')]/a[1]";    
+    TestElement(optionsLink, 10000);
+    element(by.xpath(optionsLink)).click();
+    let popupDiv = "//i[@class = 'popup__tail']/ancestor::div/div[@class='popup__under']";
+    let settingsPortal = "//div[contains(@class, 'popup_visibility_visible') and contains(@class, 'popup_to_bottom')]//div[@role ='menuitem'][last()]/a";    
+    TestElement(popupDiv, 10000);
+    TestElement(settingsPortal, 10000);
+    element(by.xpath(settingsPortal)).click();
+    browser.sleep(1000);
+    let languageButton = "//div[@class='line line_type_content']//a[3]";
+    element(by.xpath(languageButton)).click();
+    browser.sleep(1000);
+    let selectButton = "//button[contains(@class, 'select__button')]";
+    TestElement(selectButton, 10000);
+    element(by.xpath(selectButton)).click();
+    
+}
+
+async function SelectLanguage(){
+    let listLanguagesLocator = "//div[@class='select__list']/div/span";
+    let listLanguages = await element.all(by.xpath(listLanguagesLocator))
+                                    .map((tag)=>{
+                                        return tag.getText();
+                                    });
+    let indexTextEnglish = listLanguages.indexOf("English") + 1;                              
+    let selectedEnglishLocator = "(//div[@class='select__list']/div/descendant::span)" 
+                                        + "[" + indexTextEnglish +"]";
+    TestElement(selectedEnglishLocator, 10000);
+    element(by.xpath(selectedEnglishLocator)).click();
+    browser.sleep(1000);
+    let buttonSaveCurrentLanguage = "//button[contains(@class, 'form__save')]";
+    TestElement(selectedEnglishLocator, 2000);
+}
+
 function SingUp(){
     let buttonLocator = "//button[contains(@class, 'auth__button')]";    
     TestElement(buttonLocator, 10000);
-    element(by.xpath(buttonLocator)).click();    
+    element(by.xpath(buttonLocator)).click();       
 }
 
 async function GetMesageValidPassword(){
@@ -94,7 +196,6 @@ let checker = () => {
         //console.log("Exit from check cycle");
         clearInterval(timer);            
     }
-
     checkDisplayed(xpathLocator);
 };
 
@@ -116,12 +217,22 @@ function checkDisplayed(xpathLocator) {
 }
 
 module.exports = {
-    SetLogin : SetLogin,
-    SetPassword : SetPassword,
-    SingUp : SingUp,
-    ReturnUserName : ReturnUserName,
-    Logout : Logout,
-    isExitUser : isExitUser,
-    GetMesageValidPassword :GetMesageValidPassword,
-    GetMessageValidLogin : GetMessageValidLogin
+    SetLogin: SetLogin,
+    SetPassword: SetPassword,
+    SingUp: SingUp,
+    ReturnUserName: ReturnUserName,
+    Logout: Logout,
+    isExitUser: isExitUser,
+    GetMesageValidPassword: GetMesageValidPassword,
+    GetMessageValidLogin: GetMessageValidLogin,
+    GoToUrl: GoToUrl,
+    VisitToYandexVideo: VisitToYandexVideo,
+    VisitToYandexImages: VisitToYandexImages,
+    VisitToYandexNews: VisitToYandexNews,
+    VisitToYandexMaps: VisitToYandexMaps,
+    VisitToYandexMarket: VisitToYandexMarket,
+    VisitToYandexTranslate: VisitToYandexTranslate,
+    VisitToYandexMusic: VisitToYandexMusic,
+    ClickOnPopupLanguage : ClickOnPopupLanguage,
+    SelectLanguage : SelectLanguage
 }
