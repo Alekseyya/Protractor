@@ -1,7 +1,0 @@
-"Status","Name","Duration in ms","Description"
-"failed","PullTest.Test english version","6822",""
-"passed","PullTest.Validate user name","13583",""
-"passed","PullTest.Incorrect login","7024",""
-"passed","PullTest.Check exit for yandex","12489",""
-"passed","PullTest.Incorrect password","9495",""
-"passed","PullTest.Test navigation","26916",""
