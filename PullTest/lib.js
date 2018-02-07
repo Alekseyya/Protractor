@@ -146,7 +146,8 @@ function SaveLanguageSettings(){
 function SingUp(){
     let buttonLocator = "//button[contains(@class, 'auth__button')]";    
     TestElement(buttonLocator, 10000);
-    element(by.xpath(buttonLocator)).click();  
+    element(by.xpath(buttonLocator)).click();
+    browser.sleep(3000);  
 }
 
 async function GetMesageValidPassword(){

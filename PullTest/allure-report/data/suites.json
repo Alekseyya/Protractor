@@ -1,0 +1,81 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "name" : "suites",
+  "children" : [ {
+    "name" : "PullTest",
+    "children" : [ {
+      "name" : "Validate user name",
+      "uid" : "952e1c9b20c3b559",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996736138,
+        "stop" : 1517996749721,
+        "duration" : 13583
+      },
+      "flaky" : false,
+      "parameters" : [ ]
+    }, {
+      "name" : "Check exit for yandex",
+      "uid" : "738ec4ade40110bd",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996749721,
+        "stop" : 1517996762210,
+        "duration" : 12489
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    }, {
+      "name" : "Incorrect password",
+      "uid" : "64afa257381b3752",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996762210,
+        "stop" : 1517996771705,
+        "duration" : 9495
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    }, {
+      "name" : "Incorrect login",
+      "uid" : "980cc9aac67f768c",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996771705,
+        "stop" : 1517996778729,
+        "duration" : 7024
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    }, {
+      "name" : "Test navigation",
+      "uid" : "75cfef256c12da88",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996778729,
+        "stop" : 1517996805645,
+        "duration" : 26916
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    }, {
+      "name" : "Test english version",
+      "uid" : "14ece1468c1d6b7d",
+      "parentUid" : "838b371bb65277d8d5b611c97bec1d35",
+      "status" : "failed",
+      "time" : {
+        "start" : 1517996805645,
+        "stop" : 1517996812467,
+        "duration" : 6822
+      },
+      "flaky" : true,
+      "parameters" : [ ]
+    } ],
+    "uid" : "838b371bb65277d8d5b611c97bec1d35"
+  } ]
+}

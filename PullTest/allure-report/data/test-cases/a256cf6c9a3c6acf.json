@@ -1,0 +1,43 @@
+{
+  "uid" : "a256cf6c9a3c6acf",
+  "name" : "Incorrect password",
+  "fullName" : "PullTest.Incorrect password",
+  "historyId" : "5fbfebdc9daae63324b5a2a65182bbd",
+  "time" : {
+    "start" : 1517994858994,
+    "stop" : 1517994862011,
+    "duration" : 3017
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "PullTest"
+  }, {
+    "name" : "testClass",
+    "value" : "PullTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "Incorrect password"
+  }, {
+    "name" : "package",
+    "value" : "PullTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "a256cf6c9a3c6acf.json",
+  "parameterValues" : [ ]
+}

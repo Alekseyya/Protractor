@@ -1,0 +1,77 @@
+{
+  "uid" : "952e1c9b20c3b559",
+  "name" : "Validate user name",
+  "fullName" : "PullTest.Validate user name",
+  "historyId" : "9261ecdefdf768df2a7a16db23bfc3b5",
+  "time" : {
+    "start" : 1517996736138,
+    "stop" : 1517996749721,
+    "duration" : 13583
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "2846bb776e5a00c",
+      "name" : "Screenshot",
+      "source" : "2846bb776e5a00c.png",
+      "type" : "image/png",
+      "size" : 102251
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 1,
+    "stepsCount" : 0,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "PullTest"
+  }, {
+    "name" : "testClass",
+    "value" : "PullTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "Validate user name"
+  }, {
+    "name" : "package",
+    "value" : "PullTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ {
+      "uid" : "e69e7003811baa06",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517996671997,
+        "stop" : 1517996679139,
+        "duration" : 7142
+      }
+    }, {
+      "uid" : "1ddd745013358e93",
+      "status" : "passed",
+      "time" : {
+        "start" : 1517994842009,
+        "stop" : 1517994850860,
+        "duration" : 8851
+      }
+    } ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "952e1c9b20c3b559.json",
+  "parameterValues" : [ ]
+}

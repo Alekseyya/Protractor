@@ -1,0 +1,61 @@
+[ {
+  "uid" : "14ece1468c1d6b7d",
+  "name" : "Test english version",
+  "time" : {
+    "start" : 1517996805645,
+    "stop" : 1517996812467,
+    "duration" : 6822
+  },
+  "status" : "failed",
+  "severity" : "normal"
+}, {
+  "uid" : "952e1c9b20c3b559",
+  "name" : "Validate user name",
+  "time" : {
+    "start" : 1517996736138,
+    "stop" : 1517996749721,
+    "duration" : 13583
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "980cc9aac67f768c",
+  "name" : "Incorrect login",
+  "time" : {
+    "start" : 1517996771705,
+    "stop" : 1517996778729,
+    "duration" : 7024
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "738ec4ade40110bd",
+  "name" : "Check exit for yandex",
+  "time" : {
+    "start" : 1517996749721,
+    "stop" : 1517996762210,
+    "duration" : 12489
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "64afa257381b3752",
+  "name" : "Incorrect password",
+  "time" : {
+    "start" : 1517996762210,
+    "stop" : 1517996771705,
+    "duration" : 9495
+  },
+  "status" : "passed",
+  "severity" : "normal"
+}, {
+  "uid" : "75cfef256c12da88",
+  "name" : "Test navigation",
+  "time" : {
+    "start" : 1517996778729,
+    "stop" : 1517996805645,
+    "duration" : 26916
+  },
+  "status" : "passed",
+  "severity" : "normal"
+} ]

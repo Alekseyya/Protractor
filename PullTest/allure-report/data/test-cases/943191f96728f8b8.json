@@ -1,0 +1,43 @@
+{
+  "uid" : "943191f96728f8b8",
+  "name" : "Incorrect login",
+  "fullName" : "PullTest.Incorrect login",
+  "historyId" : "e0dff4edd1542594970396b3ee8a847d",
+  "time" : {
+    "start" : 1517994862011,
+    "stop" : 1517994864739,
+    "duration" : 2728
+  },
+  "description" : "",
+  "descriptionHtml" : "",
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "PullTest"
+  }, {
+    "name" : "testClass",
+    "value" : "PullTest"
+  }, {
+    "name" : "testMethod",
+    "value" : "Incorrect login"
+  }, {
+    "name" : "package",
+    "value" : "PullTest"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure1"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "943191f96728f8b8.json",
+  "parameterValues" : [ ]
+}
