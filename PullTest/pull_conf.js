@@ -18,15 +18,15 @@ exports.config = {
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
   },
-  // onPrepare: function () {
-  //   jasmine.getEnv().addReporter(
-  //     new Jasmine2HtmlReporter({
-  //       savePath: './Reports',
-  //       fileNamePrefix: 'Report',
-  //       fileNameDateSuffix: true
-  //     })
-  //   );
-  // },
+  onPrepare: function () {
+    jasmine.getEnv().addReporter(
+      new Jasmine2HtmlReporter({
+        savePath: './Reports',
+        fileNamePrefix: 'Report',
+        fileNameDateSuffix: true
+      })
+    );
+  },
   framework: 'jasmine2',
   onPrepare: function () {
     var AllureReporter = require('jasmine-allure-reporter');
