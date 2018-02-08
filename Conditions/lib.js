@@ -41,15 +41,24 @@ function EnterTextInSearch(text){
 
     let noCorreactVideoLink = "div.service_name_video >a11";    
 
-    browser.wait(EC.visibilityOf(
+    browser.wait(EC.presenceOf(
         element(by.css(noCorreactVideoLink))
-    ), 5000, "Don't video");
-    
+    ), 5000, "Don't element in DOM");
 }
+
+function IsTextInElement(text){
+    let link = "div.home-arrow__tabs a:first-child";    
+    browser.wait(EC.textToBePresentInElement(
+        element(by.css(link)), text),
+     5000, "Not finded text");
+     
+}
+
 module.exports = {
     GoToUrl : GoToUrl,
     Click : Click,
     Scroll : Scroll,
     EnterValue : EnterValue,
-    EnterTextInSearch : EnterTextInSearch
+    EnterTextInSearch : EnterTextInSearch,
+    IsTextInElement : IsTextInElement
 }

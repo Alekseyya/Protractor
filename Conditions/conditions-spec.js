@@ -16,5 +16,8 @@ describe("Action tests", function(){
     it("Expected conditions", function(){
         lib.GoToUrl("http://www.yandex.ru/");
         lib.EnterTextInSearch("Hello");
+        lib.GoToUrl("http://www.yandex.ru/");
+        lib.IsTextInElement("Видео");
+
     });
 });
